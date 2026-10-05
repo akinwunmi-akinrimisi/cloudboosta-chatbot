@@ -5,3 +5,33 @@ aws bedrock list-inference-profiles \
   --type-equals SYSTEM_DEFINED \
   --query "inferenceProfileSummaries[?contains(inferenceProfileId, 'claude')].{ID:inferenceProfileId, ARN:inferenceProfileArn}" \
   --output table
+
+
+
+#Add the required policy statements for the Function URL
+aws lambda add-permission \
+  --function-name cloudboosta-chat-1 \
+  --region eu-west-2 \
+  --statement-id FunctionURLAllowPublicAccess \
+  --action lambda:InvokeFunctionUrl \
+  --principal "*" \
+  --function-url-auth-type NONE
+
+aws lambda add-permission \
+  --function-name cloudboosta-chat-1 \
+  --region eu-west-2 \
+  --statement-id FunctionURLAllowInvokeAction \
+  --action lambda:InvokeFunction \
+  --principal "*" \
+  --invoked-via-function-url
+
+
+#Source type to “Seed URLs” (not Sitemap): so that it can answer any question across any page of the website
+https://www.cloudboosta.com/
+https://www.cloudboosta.com/academy/
+https://www.cloudboosta.com/enroll/
+https://www.cloudboosta.com/cloud-services/
+https://www.cloudboosta.com/who-we-are/
+https://www.cloudboosta.com/resources/
+https://www.cloudboosta.com/webinars/
+https://www.cloudboosta.com/blog/
