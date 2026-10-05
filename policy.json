@@ -1,0 +1,26 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"bedrock:AgenticRetrieveStream",
+				"bedrock:InvokeModel",
+				"bedrock:InvokeModelWithResponseStream",
+				"bedrock:GetInferenceProfile",
+				"bedrock:ListInferenceProfiles",
+				"bedrock:GetGuardrail",
+				"bedrock:ApplyGuardrail"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"bedrock:Retrieve",
+				"bedrock:GetDocumentContent"
+			],
+			"Resource": "arn:aws:bedrock:eu-west-2:202951752028:knowledge-base/*"
+		}
+	]
+}
