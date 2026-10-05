@@ -1,10 +1,16 @@
-#command to list models
+#command to list models 
 
 aws bedrock list-inference-profiles \
   --region eu-west-2 \
   --type-equals SYSTEM_DEFINED \
   --query "inferenceProfileSummaries[?contains(inferenceProfileId, 'claude')].{ID:inferenceProfileId, ARN:inferenceProfileArn}" \
   --output table
+
+.......then add "FOUNDATION_MODEL_ARN" as an environmental variable for the model to use in the lambda config
+
+for example:
+Key                     Value
+FOUNDATION_MODEL_ARN     eu.anthropic.claude-sonnet-4-5-20250929-v1:0
 
 
 
