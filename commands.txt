@@ -1,0 +1,7 @@
+#command to list models
+
+aws bedrock list-inference-profiles \
+  --region eu-west-2 \
+  --type-equals SYSTEM_DEFINED \
+  --query "inferenceProfileSummaries[?contains(inferenceProfileId, 'claude')].{ID:inferenceProfileId, ARN:inferenceProfileArn}" \
+  --output table
